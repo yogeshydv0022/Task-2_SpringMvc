@@ -17,13 +17,23 @@ public class StudentDao {
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
-	
+
 	public void addStudent(Student student) {
 		hibernateTemplate.persist(student);
 	}
 
-	public void updateStudent(Student student) {
-		hibernateTemplate.update(student);
+	public void updateStudentById(int id, Student updatedStudent) {
+		Student existingStudent = hibernateTemplate.get(Student.class, id);
+		if (existingStudent != null) {
+			existingStudent.setName(updatedStudent.getName());
+			existingStudent.setClassName(updatedStudent.getClassName());
+			existingStudent.setAddress(updatedStudent.getAddress());
+			existingStudent.setSubjects(updatedStudent.getSubjects());
+			existingStudent.setBehavior(updatedStudent.getBehavior());
+			hibernateTemplate.update(existingStudent);
+		} else {
+			throw new RuntimeException("Student with ID " + id + " not found.");
+		}
 	}
 
 	public void deleteStudent(Student student) {

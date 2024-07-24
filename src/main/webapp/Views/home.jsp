@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home</title>
+<link href="./css/home.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-
-<a href="/SpringMvc/students">Show All Students</a>
+<div class="container">
+    <div class="box"><a href="/SpringMvc/students">All Students</a></div>
+</div>
 </body>
 </html>
